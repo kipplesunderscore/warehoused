@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Box/grape.png" type="Texture" id=1]
+[ext_resource path="res://Box/Box.tscn" type="PackedScene" id=2]
+
+[node name="Grape" instance=ExtResource( 2 )]
+type = "Grape"
+
+[node name="Contents" parent="." index="4"]
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 1 )
