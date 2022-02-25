@@ -25,6 +25,8 @@ var starting_pos = null
 
 var grid: BoxGrid
 
+var scene: String
+
 func get_gravity() -> float:
 	return jump_gravity if velocity.y < 0.0 else fall_gravity
 	
@@ -42,7 +44,9 @@ func get_input_velocity() -> float:
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	starting_pos = self.position
-	grid = get_parent().get_node("Grid")
+	scene = get_tree().get_current_scene().get_name()
+	if scene == "Game":
+		grid = get_parent().get_node("Grid")
 	screen_size = get_viewport_rect().size
 
 func get_current_active_interact_area():
@@ -92,7 +96,8 @@ func _physics_process(delta):
 	var interact_area = get_current_active_interact_area()
 	interact_area.get_node("CollisionShape2D").disabled = false
 	
-	grid_position()
+	if grid:
+		grid_position()
 
 	if is_on_floor():
 		$AnimationTree.set("parameters/in_air/current", 0)
@@ -103,7 +108,7 @@ func _physics_process(delta):
 
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
-	if Input.is_action_just_pressed("pickup") and not carrying:
+	if Input.is_action_just_pressed("pickup") and not carrying and grid:
 		for body in interact_area.get_overlapping_areas():
 			if body.is_in_group("Box InteractArea"):
 				var box = body.get_parent()
