@@ -43,6 +43,9 @@ autoplay = true
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 333, 502 )
+jump_height = 160.0
+jump_time_to_peak = 0.3
+jump_time_to_descent = 0.3
 
 [node name="ScoreCounter" parent="." instance=ExtResource( 8 )]
 position = Vector2( 107, 42 )
