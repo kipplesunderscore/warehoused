@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Ground.tscn" type="PackedScene" id=1]
 [ext_resource path="res://background.png" type="Texture" id=2]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Dispenser/MelonDispensor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Dispenser/CraftingGrid.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Dispenser/GrapeDispenser.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Dispenser/BoltDispenser.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Dispenser/FabricDispenser.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Dispenser/AppleDispenser.tscn" type="PackedScene" id=9]
 
 [node name="Crafting" type="Node2D"]
 
@@ -19,3 +25,25 @@ position = Vector2( 587, 582 )
 jump_height = 160.0
 jump_time_to_peak = 0.3
 jump_time_to_descent = 0.3
+
+[node name="Dispenser" parent="." instance=ExtResource( 4 )]
+position = Vector2( 739, 584 )
+
+[node name="CraftingGrid" parent="." instance=ExtResource( 5 )]
+position = Vector2( 80, 641 )
+
+[node name="Dispenser2" parent="." instance=ExtResource( 6 )]
+modulate = Color( 0.00784314, 0.454902, 0.572549, 1 )
+position = Vector2( 636, 584 )
+
+[node name="Dispenser3" parent="." instance=ExtResource( 7 )]
+modulate = Color( 0.00784314, 0.454902, 0.572549, 1 )
+position = Vector2( 846, 580 )
+
+[node name="Dispenser4" parent="." instance=ExtResource( 8 )]
+modulate = Color( 0.00784314, 0.454902, 0.572549, 1 )
+position = Vector2( 961, 581 )
+
+[node name="Dispenser5" parent="." instance=ExtResource( 9 )]
+modulate = Color( 0.00784314, 0.454902, 0.572549, 1 )
+position = Vector2( 1069, 584 )

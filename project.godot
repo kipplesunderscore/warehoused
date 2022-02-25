@@ -19,6 +19,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Grid.gd"
 }, {
+"base": "Node2D",
+"class": "CraftingGrid",
+"language": "GDScript",
+"path": "res://CraftingGrid.gd"
+}, {
+"base": "Node2D",
+"class": "Dispenser",
+"language": "GDScript",
+"path": "res://Dispenser/Dispenser.gd"
+}, {
 "base": "EditorVCSInterface",
 "class": "GitAPI",
 "language": "NativeScript",
@@ -32,6 +42,8 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Box": "",
 "BoxGrid": "",
+"CraftingGrid": "",
+"Dispenser": "",
 "GitAPI": "",
 "Player": ""
 }
