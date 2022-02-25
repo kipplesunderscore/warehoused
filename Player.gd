@@ -1,8 +1,18 @@
 extends KinematicBody2D
 class_name Player
 
+var velocity = Vector2.ZERO
+
 export var speed = 400
-export var gravity_scale = 500
+
+export var jump_height : float
+export var jump_time_to_peak : float
+export var jump_time_to_descent : float
+
+onready var jump_velocity : float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
+onready var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
+onready var fall_gravity : float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
+
 var screen_size
 var carrying = null
 var moving_right = 1
@@ -14,6 +24,20 @@ var starting_pos = null
 # var b = "text"
 
 var grid: BoxGrid
+
+func get_gravity() -> float:
+	return jump_gravity if velocity.y < 0.0 else fall_gravity
+	
+func get_input_velocity() -> float:
+	var horizontal = 0.0
+	
+	if Input.is_action_pressed("ui_left"):
+		moving_right = -1
+		horizontal -= 1.0
+	if Input.is_action_pressed("ui_right"):
+		moving_right = 1
+		horizontal += 1.0
+	return horizontal
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -52,23 +76,17 @@ func grid_position():
 func _process(_delta):
 	pass
 	
-func _physics_process(_delta):
+func _physics_process(delta):
 	#disable all interact areas
 	for area in get_tree().get_nodes_in_group("PlayerInteractArea"):
 		area.get_node("CollisionShape2D").disabled = true
-		
-	var velocity = Vector2()
-	if Input.is_action_pressed("ui_left"):
-		moving_right = -1
-		velocity.x -= speed
-	if Input.is_action_pressed("ui_right"):
-		moving_right = 1
-		velocity.x += speed
+	
+	velocity.y += get_gravity() * delta
+	velocity.x = get_input_velocity() * speed
 	if velocity.length() > 0:
-		velocity = velocity.normalized()
-		$AnimationTree.set("parameters/jump/blend_position", velocity.x)
-		$AnimationTree.set("parameters/idle/blend_position", velocity.x)
-		velocity = velocity * speed
+		var normalized = velocity.normalized()
+		$AnimationTree.set("parameters/jump/blend_position", normalized.x)
+		$AnimationTree.set("parameters/idle/blend_position", normalized.x)
 		
 	# enable interact area
 	var interact_area = get_current_active_interact_area()
@@ -78,14 +96,12 @@ func _physics_process(_delta):
 
 	if is_on_floor():
 		$AnimationTree.set("parameters/in_air/current", 0)
-
-	velocity.y = gravity_scale
 	
 	if Input.is_action_just_pressed("ui_select") and is_on_floor():
-		velocity.y = -20 * speed;
+		velocity.y = jump_velocity
 		$AnimationTree.set("parameters/in_air/current", 1)
 
-	velocity = move_and_slide(velocity, Vector2(0, -1))
+	velocity = move_and_slide(velocity, Vector2.UP)
 	
 	if Input.is_action_just_pressed("pickup") and not carrying:
 		for body in interact_area.get_overlapping_areas():
