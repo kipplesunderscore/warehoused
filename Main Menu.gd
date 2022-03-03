@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 
 # Declare member variables here. Examples:
@@ -12,11 +12,14 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	if Input.is_action_just_pressed("reset"):
-		var err = get_tree().reload_current_scene()
-		if err != OK:
-			print("failure!")
-	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().change_scene("res://MainMenu.tscn")
-	pass
+#func _process(delta):
+#	pass
+
+
+func _on_NewGameButton_pressed():
+	get_tree().change_scene("res://Game.tscn")
+
+
+func _on_ExitButton_pressed():
+	get_tree().quit()
+
