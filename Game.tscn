@@ -45,7 +45,7 @@ scale = Vector2( 4.60791, 4.46296 )
 z_index = -2
 texture = ExtResource( 5 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="PauseLayer" type="CanvasLayer" parent="."]
 
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource( 9 )]
+[node name="PauseMenu" parent="PauseLayer" instance=ExtResource( 9 )]
 margin_bottom = -2.0
