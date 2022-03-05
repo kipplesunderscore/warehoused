@@ -95,6 +95,8 @@ margin_right = 264.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 150, 0 )
 
+[connection signal="toggled" from="VBoxContainer/VisualSettings/FullScreenCheck" to="." method="_on_FullScreenCheck_toggled"]
+[connection signal="toggled" from="VBoxContainer/VisualSettings/VSyncCheck" to="." method="_on_VSyncCheck_toggled"]
 [connection signal="value_changed" from="VBoxContainer/MasterVolumeContainer/MasterVolumeSlider" to="." method="_on_MasterVolumeSlider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/EffectsVolumeContainer/EffectsVolumeSlider" to="." method="_on_EffectsVolumeSlider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/MusicVolumeContainer/MusicVolumeSlider" to="." method="_on_MusicVolumeSlider_value_changed"]
