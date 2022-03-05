@@ -1,18 +1,36 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://SettingsMenu.gd" type="Script" id=1]
+[ext_resource path="res://Box/box.png" type="Texture" id=2]
 
 [node name="SettingsMenu" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -640.0
+margin_top = -360.0
+margin_right = 640.0
+margin_bottom = 360.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Box" type="Sprite" parent="."]
+position = Vector2( 652.813, 396.688 )
+scale = Vector2( 5.69336, 3.32227 )
+texture = ExtResource( 2 )
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -132.0
+margin_top = -42.0
+margin_right = 132.0
+margin_bottom = 42.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -102,8 +120,18 @@ rect_min_size = Vector2( 150, 0 )
 min_value = -60.0
 max_value = 0.0
 
+[node name="BackButton" type="Button" parent="VBoxContainer"]
+margin_top = 88.0
+margin_right = 264.0
+margin_bottom = 108.0
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="toggled" from="VBoxContainer/VisualSettings/FullScreenCheck" to="." method="_on_FullScreenCheck_toggled"]
 [connection signal="toggled" from="VBoxContainer/VisualSettings/VSyncCheck" to="." method="_on_VSyncCheck_toggled"]
 [connection signal="value_changed" from="VBoxContainer/MasterVolumeContainer/MasterVolumeSlider" to="." method="_on_MasterVolumeSlider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/EffectsVolumeContainer/EffectsVolumeSlider" to="." method="_on_EffectsVolumeSlider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/MusicVolumeContainer/MusicVolumeSlider" to="." method="_on_MusicVolumeSlider_value_changed"]
+[connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
