@@ -10,11 +10,13 @@ extends Control
 func _ready():
 	$VBoxContainer/VisualSettings/VSyncCheck.pressed = OS.vsync_enabled
 	$VBoxContainer/MasterVolumeContainer/MasterVolumeSlider.tick_count = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master"))
+	$VBoxContainer/EffectsVolumeContainer/EffectsVolumeSlider.tick_count = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Effects"))
+	$VBoxContainer/MusicVolumeContainer/MusicVolumeSlider.tick_count = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music"))
 	pass # Replace with function body.
 
 func _on_MasterVolumeSlider_value_changed(value):
-	print (AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), value)
+	print (AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
 
 func _on_EffectsVolumeSlider_value_changed(value):
 	print (value)

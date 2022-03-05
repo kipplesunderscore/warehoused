@@ -51,6 +51,9 @@ margin_left = 114.0
 margin_right = 264.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 150, 0 )
+min_value = -60.0
+max_value = 0.0
+ticks_on_borders = true
 
 [node name="EffectsVolumeContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 48.0
@@ -74,6 +77,8 @@ margin_left = 114.0
 margin_right = 264.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 150, 0 )
+min_value = -60.0
+max_value = 0.0
 
 [node name="MusicVolumeContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 68.0
@@ -94,6 +99,8 @@ margin_left = 114.0
 margin_right = 264.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 150, 0 )
+min_value = -60.0
+max_value = 0.0
 
 [connection signal="toggled" from="VBoxContainer/VisualSettings/FullScreenCheck" to="." method="_on_FullScreenCheck_toggled"]
 [connection signal="toggled" from="VBoxContainer/VisualSettings/VSyncCheck" to="." method="_on_VSyncCheck_toggled"]
