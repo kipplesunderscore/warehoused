@@ -259,3 +259,4 @@ parameters/jump/blend_position = -0.002
 
 [node name="SFX" type="AudioStreamPlayer" parent="."]
 volume_db = 24.0
+bus = "Effects"

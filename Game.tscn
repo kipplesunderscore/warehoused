@@ -28,6 +28,7 @@ fastest_spawn_rate = 0.5
 stream = ExtResource( 4 )
 volume_db = -22.203
 autoplay = true
+bus = "Music"
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 333, 502 )

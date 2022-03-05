@@ -1,0 +1,100 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://SettingsMenu.gd" type="Script" id=1]
+
+[node name="SettingsMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VisualSettings" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 264.0
+margin_bottom = 24.0
+
+[node name="FullScreenCheck" type="CheckBox" parent="VBoxContainer/VisualSettings"]
+margin_right = 98.0
+margin_bottom = 24.0
+text = "Full Screen"
+
+[node name="VSyncCheck" type="CheckBox" parent="VBoxContainer/VisualSettings"]
+margin_left = 102.0
+margin_right = 167.0
+margin_bottom = 24.0
+text = "VSync"
+
+[node name="MasterVolumeContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 28.0
+margin_right = 264.0
+margin_bottom = 44.0
+
+[node name="MasterVolumeLabel" type="RichTextLabel" parent="VBoxContainer/MasterVolumeContainer"]
+margin_right = 110.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 110, 0 )
+text = "Master"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MasterVolumeSlider" type="HSlider" parent="VBoxContainer/MasterVolumeContainer"]
+margin_left = 114.0
+margin_right = 264.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 150, 0 )
+
+[node name="EffectsVolumeContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 48.0
+margin_right = 264.0
+margin_bottom = 64.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EffectsVolumeLable" type="RichTextLabel" parent="VBoxContainer/EffectsVolumeContainer"]
+margin_right = 110.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 110, 0 )
+text = "SFX"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EffectsVolumeSlider" type="HSlider" parent="VBoxContainer/EffectsVolumeContainer"]
+margin_left = 114.0
+margin_right = 264.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 150, 0 )
+
+[node name="MusicVolumeContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 68.0
+margin_right = 264.0
+margin_bottom = 84.0
+
+[node name="MusicVolumeLabel" type="RichTextLabel" parent="VBoxContainer/MusicVolumeContainer"]
+margin_right = 110.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 110, 0 )
+text = "Music"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicVolumeSlider" type="HSlider" parent="VBoxContainer/MusicVolumeContainer"]
+margin_left = 114.0
+margin_right = 264.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 150, 0 )
+
+[connection signal="value_changed" from="VBoxContainer/MasterVolumeContainer/MasterVolumeSlider" to="." method="_on_MasterVolumeSlider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/EffectsVolumeContainer/EffectsVolumeSlider" to="." method="_on_EffectsVolumeSlider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/MusicVolumeContainer/MusicVolumeSlider" to="." method="_on_MusicVolumeSlider_value_changed"]
