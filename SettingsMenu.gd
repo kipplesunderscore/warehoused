@@ -29,7 +29,6 @@ func _on_MusicVolumeSlider_value_changed(value):
 	print (value)
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), value)
 
-
 func _on_FullScreenCheck_toggled(button_pressed):
 	OS.window_fullscreen = !OS.window_fullscreen
 
@@ -37,6 +36,19 @@ func _on_VSyncCheck_toggled(button_pressed):
 	OS.vsync_enabled = $VBoxContainer/VisualSettings/VSyncCheck.pressed
 	print (OS.vsync_enabled)
 
-
 func _on_BackButton_pressed():
 	visible = false
+
+func _on_EffectsVolumeSlider_drag_started():
+	$SoundEffectsPlayer.play()
+
+func _on_EffectsVolumeSlider_drag_ended(value_changed):
+	$SoundEffectsPlayer.stop()
+
+
+func _on_MusicVolumeSlider_drag_started():
+	$MusicPlayer.play()
+
+
+func _on_MusicVolumeSlider_drag_ended(value_changed):
+	$MusicPlayer.stop()

@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://SettingsMenu.gd" type="Script" id=1]
 [ext_resource path="res://Box/box.png" type="Texture" id=2]
+[ext_resource path="res://JumpSettings.ogg" type="AudioStream" id=3]
+[ext_resource path="res://2_3.mp3" type="AudioStream" id=4]
 
 [node name="SettingsMenu" type="Control"]
 anchor_left = 0.5
@@ -129,9 +131,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="SoundEffectsPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "Effects"
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "Music"
+
 [connection signal="toggled" from="VBoxContainer/VisualSettings/FullScreenCheck" to="." method="_on_FullScreenCheck_toggled"]
 [connection signal="toggled" from="VBoxContainer/VisualSettings/VSyncCheck" to="." method="_on_VSyncCheck_toggled"]
 [connection signal="value_changed" from="VBoxContainer/MasterVolumeContainer/MasterVolumeSlider" to="." method="_on_MasterVolumeSlider_value_changed"]
+[connection signal="drag_ended" from="VBoxContainer/EffectsVolumeContainer/EffectsVolumeSlider" to="." method="_on_EffectsVolumeSlider_drag_ended"]
+[connection signal="drag_started" from="VBoxContainer/EffectsVolumeContainer/EffectsVolumeSlider" to="." method="_on_EffectsVolumeSlider_drag_started"]
 [connection signal="value_changed" from="VBoxContainer/EffectsVolumeContainer/EffectsVolumeSlider" to="." method="_on_EffectsVolumeSlider_value_changed"]
+[connection signal="drag_ended" from="VBoxContainer/MusicVolumeContainer/MusicVolumeSlider" to="." method="_on_MusicVolumeSlider_drag_ended"]
+[connection signal="drag_started" from="VBoxContainer/MusicVolumeContainer/MusicVolumeSlider" to="." method="_on_MusicVolumeSlider_drag_started"]
 [connection signal="value_changed" from="VBoxContainer/MusicVolumeContainer/MusicVolumeSlider" to="." method="_on_MusicVolumeSlider_value_changed"]
 [connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
