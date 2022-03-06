@@ -1,0 +1,311 @@
+[gd_scene load_steps=31 format=2]
+
+[ext_resource path="res://src/Actors/Player/PlayerTransitions/move_transition.gd" type="Script" id=1]
+[ext_resource path="res://src/Actors/Player/PlayerTransitions/jump_transition.gd" type="Script" id=2]
+[ext_resource path="res://src/Actors/FSM/jump_state.gd" type="Script" id=3]
+[ext_resource path="res://src/Actors/Player/player.gd" type="Script" id=4]
+[ext_resource path="res://src/Actors/FSM/fall_state.gd" type="Script" id=5]
+[ext_resource path="res://src/Actors/FSM/move_state.gd" type="Script" id=6]
+[ext_resource path="res://src/Actors/FSM/idle_state.gd" type="Script" id=7]
+[ext_resource path="res://src/Actors/Player/PlayerTransitions/buffered_jump_transition.gd" type="Script" id=8]
+[ext_resource path="res://Jump.ogg" type="AudioStream" id=9]
+[ext_resource path="res://src/Actors/FSM/Transitions/coyote_transition.gd" type="Script" id=10]
+[ext_resource path="res://src/Actors/FSM/coyote_state.gd" type="Script" id=11]
+[ext_resource path="res://src/Actors/Player/player_variables.gd" type="Script" id=12]
+[ext_resource path="res://src/Actors/FSM/state_manager.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/Actors/FSM/Transitions/idle_transition.gd" type="Script" id=14]
+[ext_resource path="res://src/Actors/FSM/Transitions/fall_transition.gd" type="Script" id=15]
+[ext_resource path="res://robot_full_sprite_sheet.png" type="Texture" id=16]
+
+[sub_resource type="Animation" id=28]
+resource_name = "Idle_Left"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 6, 7 ]
+}
+
+[sub_resource type="Animation" id=29]
+resource_name = "Idle_Right"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 9, 10 ]
+}
+
+[sub_resource type="Animation" id=30]
+resource_name = "Jump_Left"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 3, 4, 5 ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("../SFX")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": null
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+} ],
+"times": PoolRealArray( 0, 0.001 )
+}
+
+[sub_resource type="Animation" id=31]
+resource_name = "Jump_Right"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("../SFX")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="RectangleShape2D" id=32]
+extents = Vector2( 18.6043, 14.3747 )
+
+[sub_resource type="RectangleShape2D" id=33]
+
+[sub_resource type="AnimationNodeAnimation" id=34]
+animation = "Idle_Left"
+
+[sub_resource type="AnimationNodeAnimation" id=35]
+animation = "Idle_Right"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=21]
+blend_point_0/node = SubResource( 34 )
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource( 35 )
+blend_point_1/pos = 1.0
+
+[sub_resource type="AnimationNodeTransition" id=23]
+input_count = 2
+input_0/name = "idle"
+input_0/auto_advance = false
+input_1/name = "jumping"
+input_1/auto_advance = false
+
+[sub_resource type="AnimationNodeAnimation" id=36]
+animation = "Jump_Left"
+
+[sub_resource type="AnimationNodeAnimation" id=37]
+animation = "Jump_Right"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=27]
+blend_point_0/node = SubResource( 36 )
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource( 37 )
+blend_point_1/pos = 1.0
+
+[sub_resource type="AnimationNodeBlendTree" id=38]
+graph_offset = Vector2( -292.565, -87.537 )
+nodes/idle/node = SubResource( 21 )
+nodes/idle/position = Vector2( 120, -66.6667 )
+nodes/in_air/node = SubResource( 23 )
+nodes/in_air/position = Vector2( 480, -26.6667 )
+nodes/jump/node = SubResource( 27 )
+nodes/jump/position = Vector2( 120, 66.6667 )
+nodes/output/position = Vector2( 853.333, 13.3333 )
+node_connections = [ "output", 0, "in_air", "in_air", 0, "idle", "in_air", 1, "jump" ]
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="PlayerVariables" type="Node" parent="."]
+script = ExtResource( 12 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = -30.0
+margin_top = -53.0
+margin_right = 153.0
+margin_bottom = -33.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 1.734, 1.734 )
+texture = ExtResource( 16 )
+hframes = 3
+vframes = 4
+frame = 9
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Idle_Left = SubResource( 28 )
+anims/Idle_Right = SubResource( 29 )
+anims/Jump_Left = SubResource( 30 )
+anims/Jump_Right = SubResource( 31 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -3, 16 )
+rotation = -3.13559
+scale = Vector2( 1.57998, -2.92174 )
+shape = SubResource( 32 )
+
+[node name="StateManager" parent="." instance=ExtResource( 13 )]
+initial_state = NodePath("IdleState")
+configuration_node = NodePath("../PlayerVariables")
+
+[node name="IdleState" type="Node" parent="StateManager"]
+script = ExtResource( 7 )
+state_name = "idle"
+
+[node name="JumpTransition" type="Node" parent="StateManager/IdleState"]
+script = ExtResource( 2 )
+
+[node name="MoveTransition" type="Node" parent="StateManager/IdleState"]
+script = ExtResource( 1 )
+
+[node name="FallTransition" type="Node" parent="StateManager/IdleState"]
+script = ExtResource( 15 )
+
+[node name="JumpState" type="Node" parent="StateManager"]
+script = ExtResource( 3 )
+state_name = "jump"
+
+[node name="IdleTransition" type="Node" parent="StateManager/JumpState"]
+script = ExtResource( 14 )
+
+[node name="MoveTransition" type="Node" parent="StateManager/JumpState"]
+script = ExtResource( 1 )
+
+[node name="FallTransition" type="Node" parent="StateManager/JumpState"]
+script = ExtResource( 15 )
+
+[node name="FallState" type="Node" parent="StateManager"]
+script = ExtResource( 5 )
+state_name = "fall"
+
+[node name="BufferedJumpTransition" type="Node" parent="StateManager/FallState"]
+script = ExtResource( 8 )
+
+[node name="MoveTransition" type="Node" parent="StateManager/FallState"]
+script = ExtResource( 1 )
+
+[node name="IdleTransition" type="Node" parent="StateManager/FallState"]
+script = ExtResource( 14 )
+
+[node name="MoveState" type="Node" parent="StateManager"]
+script = ExtResource( 6 )
+state_name = "move"
+
+[node name="JumpTransition" type="Node" parent="StateManager/MoveState"]
+script = ExtResource( 2 )
+
+[node name="IdleTransition" type="Node" parent="StateManager/MoveState"]
+script = ExtResource( 14 )
+
+[node name="CoyoteTransition" type="Node" parent="StateManager/MoveState"]
+script = ExtResource( 10 )
+
+[node name="CoyoteState" type="Node" parent="StateManager"]
+script = ExtResource( 11 )
+state_name = "coyote"
+
+[node name="JumpTransition" type="Node" parent="StateManager/CoyoteState"]
+script = ExtResource( 2 )
+
+[node name="MoveTransition" type="Node" parent="StateManager/CoyoteState"]
+script = ExtResource( 1 )
+
+[node name="FallTransition" type="Node" parent="StateManager/CoyoteState"]
+script = ExtResource( 15 )
+
+[node name="IdleTransition" type="Node" parent="StateManager/CoyoteState"]
+script = ExtResource( 14 )
+
+[node name="TL" type="Area2D" parent="." groups=["PlayerInteractArea"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TL"]
+position = Vector2( -54, -37 )
+scale = Vector2( 0.5, 0.5 )
+shape = SubResource( 33 )
+
+[node name="TR" type="Area2D" parent="." groups=["PlayerInteractArea"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TR"]
+position = Vector2( 54, -37 )
+scale = Vector2( 0.5, 0.5 )
+shape = SubResource( 33 )
+
+[node name="ML" type="Area2D" parent="." groups=["PlayerInteractArea"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ML"]
+position = Vector2( -54, 18 )
+scale = Vector2( 0.5, 0.5 )
+shape = SubResource( 33 )
+
+[node name="MR" type="Area2D" parent="." groups=["PlayerInteractArea"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MR"]
+position = Vector2( 54, 18 )
+scale = Vector2( 0.5, 0.5 )
+shape = SubResource( 33 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 38 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/idle/blend_position = 0.123
+parameters/in_air/current = 0
+parameters/jump/blend_position = -0.002
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+volume_db = 24.0
+bus = "Effects"
