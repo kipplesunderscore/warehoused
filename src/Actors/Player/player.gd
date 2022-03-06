@@ -20,11 +20,7 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	states.physics_process(delta)
 	states.transition_process()
-	if velocity.length() > 0:
-		var normalized = velocity.normalized()
-		$AnimationTree.set("parameters/jump/blend_position", normalized.x)
-		$AnimationTree.set("parameters/idle/blend_position", normalized.x)
-	
+
 	# enable interact area
 	var interact_area = get_current_active_interact_area()
 	interact_area.get_node("CollisionShape2D").disabled = false
@@ -32,8 +28,16 @@ func _physics_process(delta: float) -> void:
 	if grid:
 		grid_position()
 
-	if is_on_floor():
-		$AnimationTree.set("parameters/in_air/current", 0)
+	match states.current_state.state_name:
+		"idle", "move", "coyote":
+			$AnimationTree.set("parameters/in_air/current", 0)
+		"jump", "fall":
+			$AnimationTree.set("parameters/in_air/current", 1)
+	
+	if velocity.length() > 0:
+		var normalized = velocity.normalized()
+		$AnimationTree.set("parameters/jump/blend_position", normalized.x)
+		$AnimationTree.set("parameters/idle/blend_position", normalized.x)
 		
 	if Input.is_action_just_pressed("pickup") and not carrying and grid:
 		for body in interact_area.get_overlapping_areas():

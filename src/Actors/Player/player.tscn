@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://src/Actors/Player/PlayerTransitions/move_transition.gd" type="Script" id=1]
 [ext_resource path="res://src/Actors/Player/PlayerTransitions/jump_transition.gd" type="Script" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://src/Actors/FSM/move_state.gd" type="Script" id=6]
 [ext_resource path="res://src/Actors/FSM/idle_state.gd" type="Script" id=7]
 [ext_resource path="res://src/Actors/Player/PlayerTransitions/buffered_jump_transition.gd" type="Script" id=8]
-[ext_resource path="res://Jump.ogg" type="AudioStream" id=9]
 [ext_resource path="res://src/Actors/FSM/Transitions/coyote_transition.gd" type="Script" id=10]
 [ext_resource path="res://src/Actors/FSM/coyote_state.gd" type="Script" id=11]
 [ext_resource path="res://src/Actors/Player/player_variables.gd" type="Script" id=12]
@@ -22,7 +21,7 @@ resource_name = "Idle_Left"
 length = 0.2
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("../Sprite:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -39,7 +38,7 @@ resource_name = "Idle_Right"
 length = 0.2
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("../Sprite:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -55,7 +54,7 @@ tracks/0/keys = {
 resource_name = "Jump_Left"
 length = 0.3
 tracks/0/type = "value"
-tracks/0/path = NodePath("../Sprite:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -66,30 +65,12 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 3, 4, 5 ]
 }
-tracks/1/type = "audio"
-tracks/1/path = NodePath("../SFX")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": null
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 9 )
-} ],
-"times": PoolRealArray( 0, 0.001 )
-}
 
 [sub_resource type="Animation" id=31]
 resource_name = "Jump_Right"
 length = 0.3
 tracks/0/type = "value"
-tracks/0/path = NodePath("../Sprite:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -99,20 +80,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2 ]
-}
-tracks/1/type = "audio"
-tracks/1/path = NodePath("../SFX")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 9 )
-} ],
-"times": PoolRealArray( 0 )
 }
 
 [sub_resource type="RectangleShape2D" id=32]
@@ -152,7 +119,7 @@ blend_point_1/node = SubResource( 37 )
 blend_point_1/pos = 1.0
 
 [sub_resource type="AnimationNodeBlendTree" id=38]
-graph_offset = Vector2( -292.565, -87.537 )
+graph_offset = Vector2( -202.343, -88.0278 )
 nodes/idle/node = SubResource( 21 )
 nodes/idle/position = Vector2( 120, -66.6667 )
 nodes/in_air/node = SubResource( 23 )
@@ -180,18 +147,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Idle_Left = SubResource( 28 )
+anims/Idle_Right = SubResource( 29 )
+anims/Jump_Left = SubResource( 30 )
+anims/Jump_Right = SubResource( 31 )
+
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 1.734, 1.734 )
 texture = ExtResource( 16 )
 hframes = 3
 vframes = 4
 frame = 9
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Idle_Left = SubResource( 28 )
-anims/Idle_Right = SubResource( 29 )
-anims/Jump_Left = SubResource( 30 )
-anims/Jump_Right = SubResource( 31 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -3, 16 )
@@ -302,9 +269,10 @@ shape = SubResource( 33 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 38 )
 anim_player = NodePath("../AnimationPlayer")
+active = true
 parameters/idle/blend_position = 0.123
 parameters/in_air/current = 0
-parameters/jump/blend_position = -0.002
+parameters/jump/blend_position = 0.342161
 
 [node name="SFX" type="AudioStreamPlayer" parent="."]
 volume_db = 24.0
