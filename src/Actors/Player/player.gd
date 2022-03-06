@@ -29,9 +29,9 @@ func _physics_process(delta: float) -> void:
 		grid_position()
 
 	match states.current_state.state_name:
-		"idle", "move", "coyote":
+		"idle", "move", "coyote", "fall":
 			$AnimationTree.set("parameters/in_air/current", 0)
-		"jump", "fall":
+		"jump":
 			$AnimationTree.set("parameters/in_air/current", 1)
 	
 	if velocity.length() > 0:

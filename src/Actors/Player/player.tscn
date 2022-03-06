@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://src/Actors/Player/PlayerTransitions/move_transition.gd" type="Script" id=1]
 [ext_resource path="res://src/Actors/Player/PlayerTransitions/jump_transition.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://src/Actors/FSM/move_state.gd" type="Script" id=6]
 [ext_resource path="res://src/Actors/FSM/idle_state.gd" type="Script" id=7]
 [ext_resource path="res://src/Actors/Player/PlayerTransitions/buffered_jump_transition.gd" type="Script" id=8]
+[ext_resource path="res://Jump.ogg" type="AudioStream" id=9]
 [ext_resource path="res://src/Actors/FSM/Transitions/coyote_transition.gd" type="Script" id=10]
 [ext_resource path="res://src/Actors/FSM/coyote_state.gd" type="Script" id=11]
 [ext_resource path="res://src/Actors/Player/player_variables.gd" type="Script" id=12]
@@ -65,6 +66,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 3, 4, 5 ]
 }
+tracks/1/type = "audio"
+tracks/1/path = NodePath("SFX")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+} ],
+"times": PoolRealArray( 0 )
+}
 
 [sub_resource type="Animation" id=31]
 resource_name = "Jump_Right"
@@ -80,6 +95,20 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2 ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("SFX")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+} ],
+"times": PoolRealArray( 0 )
 }
 
 [sub_resource type="RectangleShape2D" id=32]
