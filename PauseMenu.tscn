@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://PauseMenu.gd" type="Script" id=1]
+[ext_resource path="res://SettingsMenu.tscn" type="PackedScene" id=2]
 
 [node name="PauseMenu" type="Control"]
 pause_mode = 2
@@ -47,6 +48,12 @@ margin_right = 109.0
 margin_bottom = 92.0
 text = "Exit to Desktop"
 
+[node name="SettingsMenu" parent="." instance=ExtResource( 2 )]
+visible = false
+margin_top = -369.0
+margin_bottom = 351.0
+
 [connection signal="pressed" from="VBoxContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]

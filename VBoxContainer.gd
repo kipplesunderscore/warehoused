@@ -1,4 +1,4 @@
-extends Control
+extends VBoxContainer
 
 
 # Declare member variables here. Examples:
@@ -14,15 +14,3 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
-
-
-func _on_NewGameButton_pressed():
-	get_tree().change_scene("res://Game.tscn")
-
-
-func _on_ExitButton_pressed():
-	get_tree().quit()
-
-
-func _on_SettingsButton_pressed():
-	$SettingsMenu.visible = true
