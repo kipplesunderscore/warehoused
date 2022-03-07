@@ -35,9 +35,8 @@ func _physics_process(delta: float) -> void:
 			$AnimationTree.set("parameters/in_air/current", 1)
 	
 	if velocity.length() > 0:
-		var normalized = velocity.normalized()
-		$AnimationTree.set("parameters/jump/blend_position", normalized.x)
-		$AnimationTree.set("parameters/idle/blend_position", normalized.x)
+		$AnimationTree.set("parameters/jump/blend_position", $PlayerVariables.facing_direction())
+		$AnimationTree.set("parameters/idle/blend_position", $PlayerVariables.facing_direction())
 		
 	if Input.is_action_just_pressed("pickup") and not carrying and grid:
 		for body in interact_area.get_overlapping_areas():

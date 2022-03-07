@@ -166,6 +166,9 @@ __meta__ = {
 
 [node name="PlayerVariables" type="Node" parent="."]
 script = ExtResource( 12 )
+jump_height = 160.0
+jump_time_to_descent = 0.3
+move_speed = 400.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 margin_left = -30.0
@@ -187,7 +190,7 @@ scale = Vector2( 1.734, 1.734 )
 texture = ExtResource( 16 )
 hframes = 3
 vframes = 4
-frame = 9
+frame = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -3, 16 )
@@ -244,6 +247,9 @@ state_name = "move"
 
 [node name="JumpTransition" type="Node" parent="StateManager/MoveState"]
 script = ExtResource( 2 )
+
+[node name="PlayerMoveTransition" type="Node" parent="StateManager/MoveState"]
+script = ExtResource( 1 )
 
 [node name="IdleTransition" type="Node" parent="StateManager/MoveState"]
 script = ExtResource( 14 )
