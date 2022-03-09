@@ -10,6 +10,21 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "KinematicBody2D",
+"class": "Actor2D",
+"language": "GDScript",
+"path": "res://src/Actors/actor_2d.gd"
+}, {
+"base": "Node",
+"class": "BaseState",
+"language": "GDScript",
+"path": "res://src/Actors/FSM/base_state.gd"
+}, {
+"base": "Node",
+"class": "BaseTransition",
+"language": "GDScript",
+"path": "res://src/Actors/FSM/base_transition.gd"
+}, {
+"base": "KinematicBody2D",
 "class": "Box",
 "language": "GDScript",
 "path": "res://Box/Box.gd"
@@ -18,6 +33,16 @@ _global_script_classes=[ {
 "class": "BoxGrid",
 "language": "GDScript",
 "path": "res://Grid.gd"
+}, {
+"base": "BaseState",
+"class": "CoyoteState",
+"language": "GDScript",
+"path": "res://src/Actors/FSM/coyote_state.gd"
+}, {
+"base": "FallTransition",
+"class": "CoyoteTransition",
+"language": "GDScript",
+"path": "res://src/Actors/FSM/Transitions/coyote_transition.gd"
 }, {
 "base": "Node2D",
 "class": "CraftingGrid",
@@ -29,23 +54,82 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Dispenser/Dispenser.gd"
 }, {
-"base": "EditorVCSInterface",
+"base": "BaseState",
+"class": "FallState",
+"language": "GDScript",
+"path": "res://src/Actors/FSM/fall_state.gd"
+}, {
+"base": "BaseTransition",
+"class": "FallTransition",
+"language": "GDScript",
+"path": "res://src/Actors/FSM/Transitions/fall_transition.gd"
+}, {
+"base": "",
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
 }, {
-"base": "KinematicBody2D",
+"base": "BaseState",
+"class": "IdleState",
+"language": "GDScript",
+"path": "res://src/Actors/FSM/idle_state.gd"
+}, {
+"base": "BaseTransition",
+"class": "IdleTransition",
+"language": "GDScript",
+"path": "res://src/Actors/FSM/Transitions/idle_transition.gd"
+}, {
+"base": "BaseState",
+"class": "JumpState",
+"language": "GDScript",
+"path": "res://src/Actors/FSM/jump_state.gd"
+}, {
+"base": "BaseState",
+"class": "MoveState",
+"language": "GDScript",
+"path": "res://src/Actors/FSM/move_state.gd"
+}, {
+"base": "Actor2D",
 "class": "Player",
 "language": "GDScript",
-"path": "res://Player.gd"
+"path": "res://src/Actors/Player/player.gd"
+}, {
+"base": "BaseTransition",
+"class": "PlayerBufferedJumpTransition",
+"language": "GDScript",
+"path": "res://src/Actors/Player/PlayerTransitions/buffered_jump_transition.gd"
+}, {
+"base": "BaseTransition",
+"class": "PlayerJumpTransition",
+"language": "GDScript",
+"path": "res://src/Actors/Player/PlayerTransitions/jump_transition.gd"
+}, {
+"base": "BaseTransition",
+"class": "PlayerMoveTransition",
+"language": "GDScript",
+"path": "res://src/Actors/Player/PlayerTransitions/move_transition.gd"
 } ]
 _global_script_class_icons={
+"Actor2D": "",
+"BaseState": "",
+"BaseTransition": "",
 "Box": "",
 "BoxGrid": "",
+"CoyoteState": "",
+"CoyoteTransition": "",
 "CraftingGrid": "",
 "Dispenser": "",
+"FallState": "",
+"FallTransition": "",
 "GitAPI": "",
-"Player": ""
+"IdleState": "",
+"IdleTransition": "",
+"JumpState": "",
+"MoveState": "",
+"Player": "",
+"PlayerBufferedJumpTransition": "",
+"PlayerJumpTransition": "",
+"PlayerMoveTransition": ""
 }
 
 [application]
@@ -113,6 +197,21 @@ test_spawn_box={
 reset={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":82,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+jump={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 
