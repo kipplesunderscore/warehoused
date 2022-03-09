@@ -1,5 +1,4 @@
 extends KinematicBody2D
-class_name Player
 
 var velocity = Vector2.ZERO
 
@@ -65,7 +64,7 @@ func grid_position():
 	if grid.is_pixel_x_position_inside_grid(self.position.x):
 		var col = grid.get_col_from_x_pixel_pos(self.position.x)
 		var row = max(0, grid.get_row_from_y_pixel_pos(self.position.y))
-		if Input.is_action_just_pressed("test_spawn_box") and carrying:
+		if Input.is_action_just_pressed("put_down") and carrying:
 			if not grid.get_grid_cell(row, col):
 				var box = carrying
 				carrying = null
