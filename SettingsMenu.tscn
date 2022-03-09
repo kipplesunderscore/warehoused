@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://SettingsMenu.gd" type="Script" id=1]
-[ext_resource path="res://Box/box.png" type="Texture" id=2]
+[ext_resource path="res://background_menu_blue.png" type="Texture" id=2]
 [ext_resource path="res://JumpSettings.ogg" type="AudioStream" id=3]
 [ext_resource path="res://2_3.mp3" type="AudioStream" id=4]
 
@@ -20,8 +20,7 @@ __meta__ = {
 }
 
 [node name="Box" type="Sprite" parent="."]
-position = Vector2( 652.813, 396.688 )
-scale = Vector2( 5.69336, 3.32227 )
+position = Vector2( 637, 376 )
 texture = ExtResource( 2 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
