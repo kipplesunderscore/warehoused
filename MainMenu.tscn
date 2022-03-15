@@ -55,6 +55,10 @@ texture = ExtResource( 2 )
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 4 )]
 visible = false
+margin_left = -635.0
+margin_top = -368.0
+margin_right = 645.0
+margin_bottom = 358.0
 
 [connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_NewGameButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_OptionsButton_pressed"]

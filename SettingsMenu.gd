@@ -11,7 +11,8 @@ func _ready():
 	visible = false
 	print("ready")
 	print(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music")))
-	$VBoxContainer/VisualSettings/VSyncCheck.pressed = OS.vsync_enabled
+	$VisualSettings/VSyncCheck.pressed = OS.vsync_enabled
+	$VisualSettings/FullScreenCheck.pressed = OS.window_fullscreen
 	$VBoxContainer/MasterVolumeContainer/MasterVolumeSlider.value = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master"))
 	$VBoxContainer/EffectsVolumeContainer/EffectsVolumeSlider.value = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Effects"))
 	$VBoxContainer/MusicVolumeContainer/MusicVolumeSlider.value = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music"))
@@ -33,7 +34,7 @@ func _on_FullScreenCheck_toggled(button_pressed):
 	OS.window_fullscreen = !OS.window_fullscreen
 
 func _on_VSyncCheck_toggled(button_pressed):
-	OS.vsync_enabled = $VBoxContainer/VisualSettings/VSyncCheck.pressed
+	OS.vsync_enabled = $VisualSettings/VSyncCheck.pressed
 	print (OS.vsync_enabled)
 
 func _on_BackButton_pressed():
