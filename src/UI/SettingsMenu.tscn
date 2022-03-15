@@ -1,0 +1,201 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://src/UI/SettingsMenu.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/background_menu_blue.png" type="Texture" id=2]
+[ext_resource path="res://assets/sfx/JumpSettings.ogg" type="AudioStream" id=3]
+[ext_resource path="res://assets/music/2_3.mp3" type="AudioStream" id=4]
+[ext_resource path="res://assets/fonts/OCRAEXT.TTF" type="DynamicFontData" id=5]
+
+[sub_resource type="DynamicFont" id=3]
+size = 24
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 24
+use_mipmaps = true
+extra_spacing_top = -5
+extra_spacing_bottom = -14
+font_data = ExtResource( 5 )
+
+[sub_resource type="Theme" id=2]
+Button/colors/font_color = Color( 1, 1, 1, 1 )
+Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+Button/colors/font_color_focus = Color( 0.94, 0.94, 0.94, 1 )
+Button/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
+Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+Button/constants/hseparation = 13
+Button/fonts/font = SubResource( 3 )
+Button/styles/disabled = null
+Button/styles/focus = null
+Button/styles/hover = null
+Button/styles/normal = null
+Button/styles/pressed = null
+RichTextLabel/fonts/normal_font = SubResource( 4 )
+VBoxContainer/constants/separation = 18
+
+[node name="SettingsMenu" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -640.0
+margin_top = -360.0
+margin_right = 640.0
+margin_bottom = 360.0
+theme = SubResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VisualSettings" type="HBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -241.0
+margin_top = -17.0
+margin_right = 241.0
+margin_bottom = 17.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Box" type="Sprite" parent="VisualSettings"]
+position = Vector2( 240, 91 )
+texture = ExtResource( 2 )
+
+[node name="FullScreenCheck" type="CheckBox" parent="VisualSettings"]
+margin_left = 82.0
+margin_right = 284.0
+margin_bottom = 34.0
+text = "Full Screen"
+
+[node name="VSyncCheck" type="CheckBox" parent="VisualSettings"]
+margin_left = 288.0
+margin_right = 400.0
+margin_bottom = 34.0
+text = "VSync"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -242.0
+margin_top = 33.0
+margin_right = 239.0
+margin_bottom = 176.0
+size_flags_vertical = 2
+size_flags_stretch_ratio = 6.17
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MasterVolumeContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 4.0
+margin_right = 481.0
+margin_bottom = 20.0
+alignment = 1
+
+[node name="MasterVolumeLabel" type="RichTextLabel" parent="VBoxContainer/MasterVolumeContainer"]
+margin_left = 108.0
+margin_right = 218.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 110, 0 )
+text = "Master"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MasterVolumeSlider" type="HSlider" parent="VBoxContainer/MasterVolumeContainer"]
+margin_left = 222.0
+margin_right = 372.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 150, 0 )
+min_value = -60.0
+max_value = 0.0
+ticks_on_borders = true
+
+[node name="EffectsVolumeContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 38.0
+margin_right = 481.0
+margin_bottom = 54.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EffectsVolumeLable" type="RichTextLabel" parent="VBoxContainer/EffectsVolumeContainer"]
+margin_left = 108.0
+margin_right = 218.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 110, 0 )
+text = "SFX"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EffectsVolumeSlider" type="HSlider" parent="VBoxContainer/EffectsVolumeContainer"]
+margin_left = 222.0
+margin_right = 372.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 150, 0 )
+min_value = -60.0
+max_value = 0.0
+
+[node name="MusicVolumeContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 72.0
+margin_right = 481.0
+margin_bottom = 88.0
+alignment = 1
+
+[node name="MusicVolumeLabel" type="RichTextLabel" parent="VBoxContainer/MusicVolumeContainer"]
+margin_left = 108.0
+margin_right = 218.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 110, 0 )
+text = "Music"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicVolumeSlider" type="HSlider" parent="VBoxContainer/MusicVolumeContainer"]
+margin_left = 222.0
+margin_right = 372.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 150, 0 )
+min_value = -60.0
+max_value = 0.0
+
+[node name="BackButton" type="Button" parent="VBoxContainer"]
+margin_left = 204.0
+margin_top = 106.0
+margin_right = 276.0
+margin_bottom = 138.0
+size_flags_horizontal = 4
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SoundEffectsPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "Effects"
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "Music"
+
+[connection signal="toggled" from="VisualSettings/FullScreenCheck" to="." method="_on_FullScreenCheck_toggled"]
+[connection signal="toggled" from="VisualSettings/VSyncCheck" to="." method="_on_VSyncCheck_toggled"]
+[connection signal="value_changed" from="VBoxContainer/MasterVolumeContainer/MasterVolumeSlider" to="." method="_on_MasterVolumeSlider_value_changed"]
+[connection signal="drag_ended" from="VBoxContainer/EffectsVolumeContainer/EffectsVolumeSlider" to="." method="_on_EffectsVolumeSlider_drag_ended"]
+[connection signal="drag_started" from="VBoxContainer/EffectsVolumeContainer/EffectsVolumeSlider" to="." method="_on_EffectsVolumeSlider_drag_started"]
+[connection signal="value_changed" from="VBoxContainer/EffectsVolumeContainer/EffectsVolumeSlider" to="." method="_on_EffectsVolumeSlider_value_changed"]
+[connection signal="drag_ended" from="VBoxContainer/MusicVolumeContainer/MusicVolumeSlider" to="." method="_on_MusicVolumeSlider_drag_ended"]
+[connection signal="drag_started" from="VBoxContainer/MusicVolumeContainer/MusicVolumeSlider" to="." method="_on_MusicVolumeSlider_drag_started"]
+[connection signal="value_changed" from="VBoxContainer/MusicVolumeContainer/MusicVolumeSlider" to="." method="_on_MusicVolumeSlider_value_changed"]
+[connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
