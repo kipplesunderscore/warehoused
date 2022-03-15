@@ -8,14 +8,14 @@
 [ext_resource path="res://src/Actors/FSM/move_state.gd" type="Script" id=6]
 [ext_resource path="res://src/Actors/FSM/idle_state.gd" type="Script" id=7]
 [ext_resource path="res://src/Actors/Player/PlayerTransitions/buffered_jump_transition.gd" type="Script" id=8]
-[ext_resource path="res://Jump.ogg" type="AudioStream" id=9]
+[ext_resource path="res://assets/sfx/Jump.ogg" type="AudioStream" id=9]
 [ext_resource path="res://src/Actors/FSM/Transitions/coyote_transition.gd" type="Script" id=10]
 [ext_resource path="res://src/Actors/FSM/coyote_state.gd" type="Script" id=11]
 [ext_resource path="res://src/Actors/Player/player_variables.gd" type="Script" id=12]
 [ext_resource path="res://src/Actors/FSM/state_manager.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/Actors/FSM/Transitions/idle_transition.gd" type="Script" id=14]
 [ext_resource path="res://src/Actors/FSM/Transitions/fall_transition.gd" type="Script" id=15]
-[ext_resource path="res://robot_full_sprite_sheet.png" type="Texture" id=16]
+[ext_resource path="res://assets/sprites/robot_full_sprite_sheet.png" type="Texture" id=16]
 
 [sub_resource type="Animation" id=28]
 resource_name = "Idle_Left"
