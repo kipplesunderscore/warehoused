@@ -9,6 +9,7 @@ func _unhandled_input(event):
 		if event.is_action_pressed("ui_cancel"):
 			self.is_paused = !is_paused
 			visible = is_paused
+			$SettingsMenu.visible = false
 
 func set_is_paused(value):
 	is_paused = value
